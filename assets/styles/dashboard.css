@@ -1,0 +1,229 @@
+body {
+    background-color: var(--ne10);
+}
+
+/* sidebar */
+main .sidebar {
+    width: 18%;
+    height: 100vh; /* Sidebar akan penuh hingga tinggi viewport */
+    position: fixed; /* Sidebar tetap di kiri layar */
+    top: 0;
+    left: 0;
+    transition: all 0.3s ease;
+}
+
+main .sidebar.collapsed {
+    width: 9%;
+}
+
+.logo-small {
+    width: 80px;
+}
+
+main .sidebar-header img {
+    width: 65px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+main .sidebar-header h6 {
+    font-family: 'satoshi';
+    font-size: 20px;
+    font-weight: 600;
+}
+
+main .sidebar .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    font-size: 18px;
+    font-family: 'satoshi';
+    font-weight: 500;
+    color: var(--ne100);
+}
+
+main .sidebar .nav-link:focus,
+main .sidebar .nav-link:active,
+main .sidebar .nav-link:first-child {
+    background-color: var(--darkblue00);
+    color: var(--ne00);
+}
+
+main .sidebar.collapsed nav .nav-link span {
+    display: none;
+}
+
+main .sidebar-footer {
+    margin-top: auto;
+    text-align: center;
+    padding: 1rem;
+}
+
+main .content {
+    margin-left: 225px; /* Memberi ruang untuk sidebar */
+    transition: margin-left 0.3s ease;
+    overflow: hidden;
+}
+
+main .sidebar.collapsed + .content {
+    margin-left: 9%;
+}
+
+
+/* content */
+main .content h1 {
+    font-family: 'integral';
+    font-size: 40px;
+    font-weight: 500;
+    color: var(--ne100);
+    
+}
+
+/* content title */
+main .content .title {
+    margin-top: 60px !important;
+}
+
+main .content .title h2 {
+    font-family: "Integral CF";
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--ne100);
+}
+
+main .content .title form input {
+    font-family: 'satoshi';
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* modal */
+main .content .modal .modal-dialog .modal-content .modal-body {
+    font-family: 'satoshi';
+    color: var(--ne100);
+    font-size: 20px;
+    font-weight: 900;
+}
+
+main .content .modal .modal-dialog .modal-content .modal-body::placeholder {
+    font-family: 'satoshi';
+    font-size: 16px;
+    font-weight: 500;
+}
+
+input.form-control,
+textarea.form-control,
+select.form-select {
+    border: 1px solid var(--ne100); /* Default border color */
+    background-color: var(--ne00); /* Default background color */
+}
+
+input.form-control:focus,
+textarea.form-control:focus, 
+select.form-select:focus {
+    box-shadow: 0 0 0 0.25rem rgba(238, 199, 126, 0.75); /* Shadow lebih kuat saat fokus */
+    border-color: #EEC77E; /* Border menyesuaikan warna shadow */
+    outline: none;
+}
+
+
+/* content products */
+main .content .cards .product {
+    background-color: var(--ne00);
+    padding: 10px 10px;
+    width: 49%;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+main .content .cards .product img {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+}
+
+main .content .cards .product .text h3 {
+    color: var(--ne100);
+    font-family: 'satoshi';
+    font-size: 16px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.25px;
+}
+
+main .content .cards .product .text .tag {
+    color: var(--ne60);
+    font-family: 'satoshi';
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.25px;
+    text-transform: capitalize;
+}
+
+main .content .cards .product .text .tag p {
+    border-radius: 25px;
+    background-color: var(--yellow00);
+    padding: 3px 7px;
+}
+
+main .content .cards .product .text h4 {
+    font-family: 'satoshi';
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: 0.25px;
+    color: var(--ne100);
+}
+
+
+
+
+
+/* component */
+.btn-prim {
+    padding: 0 20px;
+    text-align: center;
+    color: var(--ne00);
+    font-family: 'satoshi';
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.25px;
+    background-color: var(--ne100);
+    border-radius: 8px;
+}
+
+.btn-prim:hover {
+    color: var(--ne100);
+    background-color: var(--yellow30);
+}
+
+.btn-prim:active {
+    color: var(--yellow30) !important;
+    background-color: var(--ne100) !important;
+}
+
+.btn-sec {
+    padding: 10px 20px;
+    text-align: center;
+    font-family: 'satoshi';
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.25px;
+    border-radius: 8px;
+    color: var(--ne100);
+    background-color: var(--yellow30);
+}
+
+.btn-sec:hover {
+    color: var(--yellow30) !important;
+    background-color: var(--ne100) !important;
+    outline: transparent 1px solid;
+}
+
+.btn-sec:active {
+    color: var(--yellow30) !important;
+    background-color: var(--ne100) !important;
+    outline: transparent 1px solid;
+}
