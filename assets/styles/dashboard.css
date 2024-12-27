@@ -1,0 +1,155 @@
+body {
+    background-color: var(--ne10);
+}
+
+/* CONTENT */
+main .content h1 {
+    font-family: 'integral';
+    font-size: 40px;
+    font-weight:400;
+    color: var(--ne100);
+    
+}
+
+/* CONTENT TITLE */
+main .content .title {
+    margin-top: 75px !important;
+}
+
+main .content .title h2 {
+    font-family: 'integral';
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--ne100);
+}
+
+main .content .title form input {
+    font-family: 'satoshi';
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* MODAL */
+main .content .modal .modal-dialog .modal-content .modal-body {
+    font-family: 'satoshi';
+    color: var(--ne100);
+    font-size: 20px;
+    font-weight: 900;
+}
+
+main .content .modal .modal-dialog .modal-content .modal-body::placeholder {
+    font-family: 'satoshi';
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--ne20);
+}
+
+input.form-control,
+select.form-select {
+    border: 1px solid var(--ne100);
+    background-color: var(--ne00); 
+}
+
+input.form-control:focus, 
+select.form-select:focus {
+    box-shadow: 0 0 0 0.25rem rgba(238, 199, 126, 0.75);
+    border-color: var(--yellow30); 
+    outline: none;
+}
+
+
+/* CONTENT PRODUCTS */
+main .content .cards .product {
+    background-color: var(--ne00);
+    padding: 10px 10px;
+    width: 49%;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+main .content .cards .product img {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+}
+
+main .content .cards .product .text h3 {
+    color: var(--ne100);
+    font-family: 'satoshi';
+    font-size: 16px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.25px;
+}
+
+main .content .cards .product .text .tag {
+    color: var(--ne60);
+    font-family: 'satoshi';
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.25px;
+    text-transform: capitalize;
+}
+
+main .content .cards .product .text .tag p {
+    border-radius: 25px;
+    background-color: var(--yellow00);
+    padding: 3px 7px;
+}
+
+main .content .cards .product .text h4 {
+    font-family: 'satoshi';
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: 0.25px;
+    color: var(--ne100);
+}
+
+
+
+/* COMPONENTS */
+.btn-prim {
+    padding: 0 20px;
+    text-align: center;
+    color: var(--ne00);
+    font-family: 'satoshi';
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.25px;
+    background-color: var(--ne100);
+    border-radius: 8px;
+}
+
+.btn-prim:hover {
+    color: var(--ne100);
+    background-color: var(--yellow30);
+}
+
+.btn-prim:active {
+    color: var(--yellow30) !important;
+    background-color: var(--ne100) !important;
+}
+
+.btn-sec {
+    padding: 10px 20px;
+    text-align: center;
+    font-family: 'satoshi';
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.25px;
+    border-radius: 8px;
+    color: var(--ne100);
+    background-color: var(--yellow30);
+}
+
+.btn-sec:hover {
+    color: var(--yellow30) !important;
+    background-color: var(--ne100) !important;
+    outline: transparent 1px solid;
+}
+
+.btn-sec:active {
+    color: var(--yellow30) !important;
+    background-color: var(--ne100) !important;
+    outline: transparent 1px solid;
+}

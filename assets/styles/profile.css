@@ -1,0 +1,101 @@
+body {
+    background-color: var(--ne10);
+}
+
+/* content */
+main .content h1 {
+    font-family: 'integral';
+    font-size: 40px;
+    font-weight: 500;
+    color: var(--ne100);
+    
+}
+
+/* modal */
+main .content {
+    font-family: 'satoshi';
+    color: var(--ne100);
+    font-size: 20px;
+    font-weight: 900;
+}
+
+input.form-control {
+    font-family: 'satoshi';
+    color: var(--ne100);
+    font-size: 16px;
+    font-weight: 500;
+    border: 1px solid var(--ne100); /* Default border color */
+    background-color: var(--ne00); /* Default background color */
+}
+
+input.form-control:focus {
+    box-shadow: 0 0 0 0.25rem rgba(238, 199, 126, 0.75); /* Shadow lebih kuat saat fokus */
+    border-color: #EEC77E; /* Border menyesuaikan warna shadow */
+    outline: none;
+}
+
+label.form-label {
+    font-family: 'satoshi';
+    color: var(--ne100);
+    font-size: 20px;
+    font-weight: 900;
+}
+
+input::placeholder {
+    font-family: 'satoshi';
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--ne20);
+}
+
+
+
+
+
+
+/* component */
+.btn-prim {
+    padding: 0 20px;
+    text-align: center;
+    color: var(--ne00);
+    font-family: 'satoshi';
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.25px;
+    background-color: var(--ne100);
+    border-radius: 8px;
+}
+
+.btn-prim:hover {
+    color: var(--ne100);
+    background-color: var(--yellow30);
+}
+
+.btn-prim:active {
+    color: var(--yellow30) !important;
+    background-color: var(--ne100) !important;
+}
+
+.btn-sec {
+    padding: 10px 20px;
+    text-align: center;
+    font-family: 'satoshi';
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.25px;
+    border-radius: 8px;
+    color: var(--ne100);
+    background-color: var(--yellow30);
+}
+
+.btn-sec:hover {
+    color: var(--yellow30) !important;
+    background-color: var(--ne100) !important;
+    outline: transparent 1px solid;
+}
+
+.btn-sec:active {
+    color: var(--yellow30) !important;
+    background-color: var(--ne100) !important;
+    outline: transparent 1px solid;
+}

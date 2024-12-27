@@ -1,0 +1,79 @@
+/* FONTS */
+@font-face {
+    font-family: 'integral';
+    src: url('../fonts/IntegralCF-Bold.woff') format(woff);
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: 'integral';
+    src: url('../fonts/IntegralCF-DemiBold.woff') format(woff);
+    font: 600;
+}
+
+@font-face {
+    font-family: 'integral';
+    src: url('../fonts/IntegralCF-ExtraBold.woff') format(woff);
+    font: 800;
+}
+
+@font-face {
+    font-family: 'integral';
+    src: url('../fonts/IntegralCF-Medium.woff') format(woff);
+    font: 500;
+}
+
+@font-face {
+    font-family: 'integral';
+    src: url('../fonts/IntegralCF-Regular.woff') format(woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'satoshi';
+    src: url('../fonts/Satoshi-Black.woff') format(woff);
+    font-weight: 900;
+}
+
+@font-face {
+    font-family: 'satoshi';
+    src: url('../fonts/Satoshi-Bold.woff') format(woff);
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: 'satoshi';
+    src: url('../fonts/Satoshi-Medium.woff') format(woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'satoshi';
+    src: url('../fonts/Satoshi-Regular.woff') format(woff);
+    font-weight: 400;
+}
+
+
+/* VARIABLES */
+:root {
+    --darkblue00 :#0078CD;
+    --darkblue10 : #00528C;
+    --darkblue20 : #003459;
+    --darkblue30 : #002A48;
+    --yellow00 : #FCEED5;
+    --yellow10 : #F7DBA7;
+    --yellow20 : #F1D092;
+    --yellow30 : #EEC77E;
+    --ne00 : #FDFDFD;
+    --ne10 : #EBEEEF;
+    --ne20 : #CCD1D2;
+    --ne40 : #99A2A5;
+    --ne60 : #667479;
+    --ne80 : #242B33;
+    --ne100 : #00171F;
+    --bs-danger : #FF564F;
+    --bs-success : #34C759;
+    --bs-warning : #FF912C;
+    --bs-info : #00A7E7;
+    --linearyellow : linear-gradient(103deg, #FCEED5 6.43%, #FCEED5 78.33%, #FFE7BA 104.24%);
+}

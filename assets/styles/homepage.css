@@ -1,0 +1,292 @@
+body {
+    background-color: var(--ne10);
+}
+
+/* NAVBAR */
+header.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background: transparent !important;
+    transition: background-color 0.3s ease;
+}
+
+header.navbar.scrolled {
+    background: var(--ne10) !important; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header nav ul li a {
+    font-family: 'satoshi';
+    font-size: 18px;
+    font-weight: 700 !important;
+    line-height: 24px;
+    color: var(--ne100);
+}
+
+header nav ul li a:hover {
+    color: var(--darkblue00) !important;
+}
+
+
+
+/* HERO */
+section.hero {
+    background-color: var(--ne00);
+    padding: 49px 89px;
+}
+
+.hero .left div h1 {
+    font-family: 'integral';
+    font-size: 72px;
+    color: var(--ne100);
+}
+
+.hero .left div img {
+    top: 170px;
+    left: -30px;
+}
+
+.hero .left p {
+    font-family: 'satoshi';
+    font-size: 24px;
+}
+
+.hero .right img:first-child {
+    top: 200px;
+    left: -20px;
+}
+
+.hero .right img:nth-child(2) {
+    bottom: -49px;
+}
+
+.hero .right img:last-child {
+    top: -30px;
+    right: 0;
+}
+
+
+/* BRANDS */
+.brands-scroll {
+    animation: scrollBrands 40s linear 2s infinite;
+}
+
+.brands-scroll img {
+    margin-right: 100px;
+}
+
+@keyframes scrollBrands {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+
+/* NEW */
+section.new {
+    background-color: var(--darkblue20);
+    height: 760px;
+}
+
+
+/* CATEGORIES */
+section.categories {
+    background: var(--linearyellow) !important;
+    padding: 62px 20px;
+}
+
+.categories h2 {
+    color: var(--darkblue30);
+}
+
+.categories div .card.one{
+    width: 407px;
+    height: 189px;
+    background-color: var(--ne00);
+    font-family: 'satoshi';
+    font-weight: 700;
+    font-size: 30px;
+    color: var(--ne100);
+}
+
+.categories div .card.two{
+    width: 584px;
+    height: 189px;
+    background-color: var(--ne00);
+    font-family: 'satoshi';
+    font-weight: 700;
+    font-size: 30px;
+    color: var(--ne100);
+}
+
+
+/* REVIEW */
+section.review {
+    background-color: var(--darkblue20);
+    padding: 2rem 0 4rem 0;
+}
+
+.size-card {
+    background-color: var(--ne00);
+    width: 700px    /* Alternatif: lebar tetap */
+}
+
+.review .card-wrapper .cards {
+    padding-inline: 20px;
+}
+
+
+/* FOOTER */
+footer {
+    background-color: var(--ne20);
+}
+
+footer .subs {
+    background-color: var(--ne100);
+}
+
+footer .subs h2 {
+    font-size: 40px;
+}
+
+footer #contact {
+    margin-top: 350rem;
+}
+
+footer #contact a {
+    font-family: 'satoshi';
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px; /* 150% */
+    color: var(--ne100);
+    text-decoration: none;
+}
+
+footer #contact a:hover {
+    color: var(--darkblue00);
+}
+
+footer .copyright p,
+footer .copyright p:last-child a {
+    font-family: 'satoshi';
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ne60);
+    text-decoration: none;
+}
+
+
+
+/* COMPONENTS */
+.cards .card-new {
+    cursor: pointer;
+    width: 270px;
+    background-color: var(--ne00);
+    color: var(--ne100);
+}
+
+.card-img-top img {
+    height: 270px;
+    transition: all 0.3s ease-in;
+}
+
+.card-img-top img:hover {
+    transform: scale(1.13);
+}
+
+h5.card-title {
+    font-family: 'satoshi';
+    font-size: 18px;
+    font-weight: 800;
+}
+
+h5.card-text {
+    font-family: 'satoshi';
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.container {
+    width: 90% !important;
+    margin-top: 5%;
+    padding: 0;
+}
+
+h2 {
+    font-family: 'integral';
+    font-size: 48px;
+    font-weight: 600;
+    letter-spacing: 1.44px;
+    color: var(--ne00);
+}
+
+h3 {
+    font-family: 'satoshi';
+    font-weight: 700;
+    font-size: 30px;
+    color: var(--ne100);
+}
+
+h4 {
+    font-family: 'satoshi';
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--ne100);
+}
+
+.mt-5 {
+    margin-top: 130px !important;
+}
+
+.btn-prim {
+    padding: 8px 32px;
+    text-align: center;
+    outline: var(--ne100) 1px solid;
+    color: var(--ne100);
+    font-family: 'satoshi';
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.25px;
+    background-color: transparent;
+    border-radius: 8px;
+}
+
+.btn-prim:hover {
+    color: var(--ne100);
+    background-color: var(--yellow30);
+    outline: transparent 1px solid;
+}
+
+.btn-prim:active {
+    color: var(--yellow30) !important;
+    background-color: var(--ne100) !important;
+    outline: transparent 1px solid;
+}
+
+.btn-sec {
+    padding: 8px 32px;
+    text-align: center;
+    font-family: 'satoshi';
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.25px;
+    border-radius: 8px;
+    color: var(--ne100);
+    background-color: var(--yellow30);
+}
+
+.btn-sec:hover {
+    color: var(--yellow30) !important;
+    background-color: var(--ne100) !important;
+    outline: transparent 1px solid;
+}
+
+.btn-sec:active {
+    color: var(--yellow30) !important;
+    background-color: var(--ne100) !important;
+    outline: transparent 1px solid;
+}

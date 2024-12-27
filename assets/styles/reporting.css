@@ -1,0 +1,44 @@
+body {
+    background-color: var(--ne10);
+}
+
+/* content */
+main .content h1 {
+    font-family: 'integral';
+    font-size: 40px;
+    font-weight: 500;
+    color: var(--ne100);
+    word-spacing: 5px;
+}
+
+main .content .title div a {
+    font-family: 'satoshi';
+    font-weight: 500;
+}
+
+.table {
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 20px;
+    font-family: 'satoshi';
+}
+
+.table thead tr th {
+    background-color: var(--yellow30);
+    color: var(--ne100);
+    font-family: 'satoshi';
+    font-weight: 900;
+
+}
+
+.table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+.badge {
+    font-family: 'satoshi';
+    font-weight: 700;
+    padding: 8px 12px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+}
