@@ -7,10 +7,11 @@
 
     require_once "../koneksi.php";
 
-    $transactions = show("SELECT t.id, t.tanggal_transaksi, t.nama_pelanggan, p.nama_produk, t.quantity, t.total_harga, t.payment_status 
-          FROM transactions t
-          JOIN products p ON t.produkID = p.id
-          ORDER BY t.tanggal_transaksi DESC");
+    $activities = show("SELECT a.nama, p.nama_produk, l.aksi, l.timestamp
+          FROM admin_logs l
+          JOIN admin a ON l.admin_id = a.id
+          JOIN products p ON l.produk_id = p.id
+          ORDER BY l.timestamp DESC");
 ?>
 
 
@@ -39,7 +40,7 @@
         <!-- Content -->
         <section class="content p-4 container-fluid">
             <div class="mt-2 mb-4 title d-flex justify-content-between align-items-center">
-                <h1>Transactions Report</h1>
+                <h1>Admin Activity Report</h1>
 
                 <div class="text-center d-flex justify-content-center align-items-center gap-3">
                     <button id="pdfExport" name="pdfExport" class="btn btn-danger">Download PDF <i class="bi bi-file-earmark-pdf-fill"></i></button>
@@ -51,35 +52,33 @@
             <table class="table table-bordered table-hover text-center">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Date</th>
-                        <th>Customer</th>
-                        <th>Product</th>
-                        <th>Quantity</th>
-                        <th>Total Price</th>
-                        <th>Status</th>
+                        <th>No</th>
+                        <th>Waktu</th>
+                        <th>Nama Admin</th>
+                        <th>Produk</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php if (count($transactions) > 0): ?>
-                        <?php foreach ($transactions as $transaction): ?>
+                    <?php if (count($activities) > 0): ?>
+                        <?php $i = 1?>
+                        <?php foreach ($activities as $activity): ?>
                             <tr>
-                                <td><?= $transaction['id'] ?></td>
-                                <td><?= date("d M Y", strtotime($transaction['tanggal_transaksi'])) ?></td>
-                                <td><?= $transaction['nama_pelanggan'] ?></td>
-                                <td><?= $transaction['nama_produk'] ?></td>
-                                <td><?= $transaction['quantity'] ?></td>
-                                <td>Rp <?= number_format($transaction['total_harga'], 2, ',', '.') ?></td>
+                                <td><?= $i ?></td>
+                                <td><?= date("d M Y, H:i:s", strtotime($activity['timestamp'])) ?></td>
+                                <td><?= $activity['nama'] ?></td>
+                                <td><?= $activity['nama_produk'] ?></td>
                                 <td>
-                                    <span class="badge bg-<?= $transaction['payment_status'] === 'Paid' ? 'success' : 'warning' ?>">
-                                        <?= $transaction['payment_status'] ?>
+                                    <span class="badge bg-<?= $activity['aksi'] === ('Add' OR 'Edit') ? 'success' : 'warning' ?>">
+                                        <?= $activity['aksi'] ?>
                                     </span>
                                 </td>
                             </tr>
+                            <?php $i++ ?>
                         <?php endforeach ?>
                     <?php else: ?>
                         <tr>
-                            <td colspan="7" class="text-center">No transactions found.</td>
+                            <td colspan="7" class="text-center">No activity found.</td>
                         </tr>
                     <?php endif ?>    
                 </tbody>
@@ -99,7 +98,7 @@
 
             // Tambahkan judul
             doc.setFontSize(18);
-            doc.text("Transactions Report", 14, 20);
+            doc.text("Admin Activity Report", 14, 20);
 
             // Ambil data tabel
             const table = document.querySelector('table');
@@ -124,7 +123,7 @@
             });
 
             // Download file
-            doc.save("transactions-packsy-report.pdf");
+            doc.save("admin-activity-packsy-report.pdf");
         });
 
 
@@ -142,7 +141,7 @@
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'transactions-packsy-report.doc';
+            a.download = 'admin-activity-packsy-report.doc';
             a.click();
             URL.revokeObjectURL(url);
         });

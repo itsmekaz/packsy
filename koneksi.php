@@ -35,9 +35,19 @@
 
         mysqli_query($conn, $query);
 
+        // Log aktivitas admin
+        $admin_id = $_SESSION['admin_id'];
+        $produk_id = mysqli_insert_id($conn);
+
+        // Masukkan log aktivitas ke dalam tabel admin_logs
+        $log_query = "INSERT INTO admin_logs (admin_id, produk_id, aksi)
+                    VALUES ('$admin_id', '$produk_id', 'Add')";
+        mysqli_query($conn, $log_query);
+
         // mengembalikan nilai 1 bila berhasil ditambahkan, -1 bila gagal ditambahkan
         return mysqli_affected_rows($conn);
     }
+
 
     // edit data
     function update($data) {
@@ -68,8 +78,17 @@
                 WHERE id = $produkId";
         mysqli_query($conn, $sql);
 
+        // Log aktivitas admin
+        $admin_id = $_SESSION['admin_id'];
+
+        // Masukkan log aktivitas ke dalam tabel admin_logs
+        $log_query = "INSERT INTO admin_logs (admin_id, produk_id, aksi)
+                    VALUES ('$admin_id', '$produkId', 'Update')";
+        mysqli_query($conn, $log_query);
+
         return mysqli_affected_rows($conn);
     }
+
 
     function uploadGambar() {
         $namaFile = $_FILES['gambar']['name'];
@@ -83,10 +102,20 @@
     function hapus($data) {
         global $conn;
         $productId = $data['productId'];
+
+        $admin_id = $_SESSION['admin_id'];
+
+        // Masukkan log aktivitas ke dalam tabel admin_logs
+        $log_query = "INSERT INTO admin_logs (admin_id, produk_id, aksi)
+                    VALUES ('$admin_id', '$productId', 'Delete')";
+        mysqli_query($conn, $log_query);
+
+        // Hapus produk dari tabel products
         mysqli_query($conn, "DELETE FROM products WHERE id = '$productId'");
-        
+
         return mysqli_affected_rows($conn);
     }
+
 
     // mencari data
     function cari($search) {

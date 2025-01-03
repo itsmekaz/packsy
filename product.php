@@ -36,7 +36,7 @@
     <main class="container-fluid p-0 mt-0">
         <section class="promo container d-flex justify-content-end align-items-center pe-3 mb-5">
             <div class="text-start">
-                <p class="mb-0 ps-2">Limited time only</p>
+                <p class="mb-0 ps-2">Limited time only!</p>
                 <h1 class="mt-0 mb-3 p-0">Get 30% off</h1>
                 <p class="ps-2">Bags designed with style and practicality in mind, <br> ensuring you stay organized and on-the-go with ease.</p>
             </div>
