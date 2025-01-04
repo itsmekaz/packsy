@@ -102,7 +102,22 @@
     <link rel="stylesheet" href="assets/styles/product.css">
 </head>
 <body>
-    <?php include "layout/header.html"?>
+    <header class="navbar navbar-expand-lg bg-body-tertiary container-fluid py-4 px-2 mt-3 mb-5">
+        <nav class="container mt-0">
+            <a class="navbar-brand mb-0 me-4" href="index.php"><img src="assets/images/logo-PACKSY.svg" alt=""></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav d-flex gap-3" id="navbarSupportedContent">
+                    <li class="nav-item"><a class="nav-link" href="index.php">HOME</a></li>
+                    <li class="nav-item"><a class="nav-link" href="product.php">PRODUCT</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">CONTACT</a></li>
+                </ul>
+            </div>
+            <a href="" data-bs-toggle="modal" data-bs-target="#cartModal" class="bi bi-cart2 fs-2"></a>
+        </nav>
+    </header>
 
     <main class="container-fluid p-0 mt-0">
         <section class="promo container d-flex justify-content-end align-items-center pe-3 mb-5">
