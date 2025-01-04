@@ -13,6 +13,77 @@
     if (isset($_POST["btn-search"])) { 
         $products = cari($_POST["search"]);
     }
+
+    // Menambahkan item ke cart
+    if (isset($_POST['addCart'])) {
+        $productId = $_POST['product_id'];
+        $quantity = (int)$_POST['quantity'];
+        
+        // Cek stok produk
+        $productQuery = "SELECT stok FROM products WHERE id = $productId";
+        $productResult = mysqli_query($conn, $productQuery);
+        $product = mysqli_fetch_assoc($productResult);
+    
+        if ($product['stok'] >= $quantity) {
+            // Periksa apakah produk sudah ada di keranjang
+            $cartQuery = "SELECT * FROM cart WHERE produk_id = $productId";
+            $cartResult = mysqli_query($conn, $cartQuery);
+            if (mysqli_num_rows($cartResult) > 0) {
+                // Update quantity
+                $updateCartQuery = "UPDATE cart SET quantity = quantity + $quantity WHERE produk_id = $productId";
+                mysqli_query($conn, $updateCartQuery);
+            } else {
+                // Tambahkan produk baru
+                $addCartQuery = "INSERT INTO cart (produk_id, quantity) VALUES ($productId, $quantity)";
+                mysqli_query($conn, $addCartQuery);
+            }
+    
+            // Kurangi stok
+            $updateStockQuery = "UPDATE products SET stok = stok - $quantity WHERE id = $productId";
+            mysqli_query($conn, $updateStockQuery);
+    
+            header('Location: product.php'); // Redirect kembali ke halaman produk
+        } else {
+            echo "<script>alert('Stok tidak mencukupi!'); window.history.back();</script>";
+        }
+    }
+
+    // Menghapus item ke cart
+    if (isset($_POST['removeItem'])) {
+        $cartId = $_POST['cart_id'];
+    
+        // Ambil detail produk di keranjang
+        $cartQuery = "SELECT produk_id, quantity FROM cart WHERE id = $cartId";
+        $cartResult = mysqli_query($conn, $cartQuery);
+        $cartItem = mysqli_fetch_assoc($cartResult);
+    
+        if ($cartItem) {
+            $productId = $cartItem['produk_id'];
+            $currentQuantity = $cartItem['quantity'];
+    
+            if ($currentQuantity > 1) {
+                // Kurangi quantity
+                $updateCartQuery = "UPDATE cart SET quantity = quantity - 1  WHERE id = $cartId";
+                mysqli_query($conn, $updateCartQuery);
+            } else {
+                // Hapus entri jika quantity mencapai 0
+                $deleteCartQuery = "DELETE FROM cart WHERE id = $cartId";
+                mysqli_query($conn, $deleteCartQuery);
+            }
+    
+            // Kembalikan stok produk
+            $updateStockQuery = "UPDATE products SET stok = stok + 1 WHERE id = $productId";
+            mysqli_query($conn, $updateStockQuery);
+    
+            header('Location: product.php'); // Redirect kembali ke halaman produk
+        } else {
+            echo "<script>alert('Item tidak ditemukan!'); window.history.back();</script>";
+        }
+    }
+
+    $cartItems = show("SELECT c.id, p.nama_produk, p.harga, p.gambar, c.quantity 
+                FROM cart c 
+                JOIN products p ON c.produk_id = p.id");
 ?>
 
 <!DOCTYPE html>
@@ -52,7 +123,7 @@
 
                 <section id="" class="cards mt-4 d-flex justify-content-start gap-3 flex-wrap row-gap-4"> 
                     <?php foreach ($products as $product) : ?>
-                        <div class="card text-center rounded-5">
+                        <div class="card text-center rounded-5" data-bs-toggle="modal" data-bs-target="#modal<?= $product['id'] ?>">
                             <div class="card-img-top rounded-5 overflow-hidden d-flex justify-content-center align-items-center">
                                 <img class="card-img-top rounded-5" src="upload/<?= $product['gambar']?>" alt="<?= $product['gambar']?>"  />
                             </div>
@@ -86,6 +157,72 @@
                 </nav>
         </section>
     </main>
+
+    <!-- Modal Detail Produk -->
+    <?php foreach ($products as $product) : ?>
+        <div class="modal fade" id="modal<?= $product['id'] ?>" tabindex="-1" aria-labelledby="modalLabel<?= $product['id'] ?>" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalLabel<?= $product['id'] ?>"><?= $product['nama_produk'] ?></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <img class="card-img-top rounded-5" style="width: 75%;" src="upload/<?= $product['gambar']?>" alt="<?= $product['gambar']?>"  />
+                        <div class="d-flex justify-content-between align-items-center mx-auto">
+                            <h5 class="card-text mt-3">Harga: Rp <?= number_format($product['harga'], 2, ',', '.') ?></h5>
+                            <h5 class="card-text mt-3">Stok tersedia: <?= $product['stok'] ?></h5>
+                        </div>
+                    </div>
+                    <form action="" method="post" class="modal-footer d-flex justify-content-between align-items-center">
+                        <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
+                        <input type="number" name="quantity" min="1" value="1" class="form-control text-center" style="width: 25%">
+                        <button type="submit" name="addCart" class="btn btn-sec" style="width: 70%">Add to Cart</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    <?php endforeach ?>
+
+    <!-- Modal Cart -->
+    <div class="modal fade modal-xl" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-titl fs-4" id="cartModalLabel">My Cart</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group">               
+                        <?php foreach ($cartItems as $item) : ?>
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-4">
+                                <div class="title d-flex justify-content-start align-items-center gap-3 w-75">
+                                    <input type="checkbox">
+                                    <img class="card-img-top rounded-2" style="width: 10%;" src="upload/<?= $item['gambar'] ?>"/>
+                                    <h5 class="text-start"><?= $item['nama_produk'] ?></h5>
+                                </div>
+                                <div class="desc d-flex justify-content-around align-items-center w-75">
+                                    <p class="d-flex flex-column align-items-center">Harga Satuan: <span>Rp <?= number_format($item['harga'], 2, ',', '.') ?></span></p>
+                                    <p class="d-flex flex-column align-items-center">Quantity: <span><?= $item['quantity'] ?></span></p>
+                                    <p class="d-flex flex-column align-items-center">Total: <span>Rp <?= number_format($item['harga'] * $item['quantity'], 2, ',', '.') ?></span></p>
+                                </div>
+                                <form action="" method="post" style="display: inline;">
+                                    <input type="hidden" name="cart_id" value="<?= $item['id'] ?>">
+                                    <button type="submit" name="removeItem" class="btn btn-danger btn-sm">Remove</button>
+                                </form>
+                            </li>
+                        <?php endforeach ?>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-sec mx-auto" style="width: 60%">Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
 
     <?php include "layout/footer.html"?>
 

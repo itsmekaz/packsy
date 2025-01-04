@@ -88,7 +88,7 @@ input.form-control:focus {
     transform: scale(1.13);
 }
 
-h5.card-title {
+h5.card-title, h5.modal-title {
     font-family: 'satoshi';
     font-size: 18px;
     font-weight: 800;
@@ -175,4 +175,28 @@ footer .copyright p:last-child a {
 .btn-prim:active {
     color: var(--yellow30) !important;
     background-color: var(--ne100) !important;
+}
+
+.btn-sec {
+    padding: 8px 32px;
+    text-align: center;
+    font-family: 'satoshi';
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.25px;
+    border-radius: 8px;
+    color: var(--ne100);
+    background-color: var(--yellow30);
+}
+
+.btn-sec:hover {
+    color: var(--yellow30) !important;
+    background-color: var(--ne100) !important;
+    outline: transparent 1px solid;
+}
+
+.btn-sec:active {
+    color: var(--yellow30) !important;
+    background-color: var(--ne100) !important;
+    outline: transparent 1px solid;
 }
